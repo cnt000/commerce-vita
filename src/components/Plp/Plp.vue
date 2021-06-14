@@ -42,6 +42,10 @@ export default defineComponent({
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+h2 {
+  width: 60%;
+  margin: 0 auto;
+}
 h3 {
   margin: 40px 0 0;
 }
@@ -52,25 +56,28 @@ ul {
   flex-wrap: wrap;
 }
 li {
-  flex-basis: 50%;
+  width: 50%;
+  /* border: 1px dotted blue; */
   a {
+    display: block;
     display: flex;
     flex-direction: column;
     text-decoration: none;
+    justify-content: space-between;
   }
 
   img {
     margin: 0 auto;
     display: block;
     width: auto;
-    height: 250px;
+    height: 200px;
   }
 }
 .description {
   height: 100px;
 }
 button {
-  width: 200px;
+  width: 60%;
   height: 60px;
   margin: 0 auto;
   margin-bottom: 20px;
