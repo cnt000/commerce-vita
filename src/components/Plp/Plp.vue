@@ -5,7 +5,9 @@
     <ul>
       <li v-bind:key="product.id" v-for="product in products">
         <a href="#">
-          <img v-bind:src="product.image" alt="" />
+          <div class="imageContainer">
+            <img v-bind:src="product.image" alt="" />
+          </div>
           <h2>{{ product.title }}</h2>
           <div>{{ product.price }}</div>
           <!-- <div class="description">{{ product.description }}</div> -->
@@ -45,6 +47,7 @@ export default defineComponent({
 h2 {
   width: 60%;
   margin: 0 auto;
+  font-size: 0.5em;
 }
 h3 {
   margin: 40px 0 0;
@@ -65,12 +68,16 @@ li {
     text-decoration: none;
     justify-content: space-between;
   }
-
+  .imageContainer {
+    width: 50%;
+    height: 200px;
+    margin: 0 auto;
+  }
   img {
     margin: 0 auto;
     display: block;
-    width: auto;
-    height: 200px;
+    width: 50%;
+    height: auto;
   }
 }
 .description {
