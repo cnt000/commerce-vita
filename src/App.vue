@@ -1,12 +1,12 @@
 <template>
   <Header />
-  <Plp msg="Our selection" />
+  <Plp />
   <Footer />
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import 'normalize.css';
+import "normalize.css";
 import Header from "./components/Header/Header.vue";
 import Plp from "./components/Plp/Plp.vue";
 import Footer from "./components/Footer/Footer.vue";
