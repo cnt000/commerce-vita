@@ -1,11 +1,11 @@
 <template>
   <transition name="fade">
     <div class="modal" v-if="show">
-      <div class="modal__backdrop" @click="closeModal()" />
+      <div class="modal-backdrop" @click="closeModal()" />
 
-      <div class="modal__dialog">
-        <div class="modal__header">
-          <button type="button" class="modal__close" @click="closeModal()">
+      <div class="modal-dialog">
+        <div class="modal-header">
+          <button type="button" class="modal-close" @click="closeModal()">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512">
               <path
                 fill="currentColor"
@@ -15,28 +15,37 @@
           </button>
         </div>
 
-        <div class="modal__body">
-          <h2>
-            {{ product.title }}
-          </h2>
-          <div>
-            {{ product.description }}
+        <div class="modal-body">
+          <div class="product-container">
+            <div class="image-container">
+              <img loading="lazy" :src="product.image" alt="" />
+            </div>
+            <div class="info-container">
+              <span class="category">[{{ product.category }}]</span>
+              <span class="title">{{ product.title }}</span>
+              <span class="price">Price: €{{ product.price }}</span>
+              <span class="description">{{ product.description }}</span>
+            </div>
           </div>
         </div>
 
-        <div class="modal__footer">
-          <div>
-            <button>Add To Cart</button>
-          </div>
+        <div class="modal-footer">
+          <button class="add-to-cart" @click.prevent="$refs.addToCart.openBadge(product.title)">Add To Cart</button>
         </div>
       </div>
     </div>
   </transition>
+  <badge ref="addToCart"></badge>
 </template>
 
 <script>
+import Badge from "../Badge/Badge.vue";
+
 export default {
   name: "Modal",
+  components: {
+    Badge,
+  },
   data() {
     return {
       show: false,
@@ -58,6 +67,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../scss/_add-to-cart";
+
 .modal {
   overflow-x: hidden;
   overflow-y: auto;
@@ -67,7 +78,7 @@ export default {
   bottom: 0;
   left: 0;
   z-index: 9;
-  &__backdrop {
+  .modal-backdrop {
     background-color: rgba(0, 0, 0, 0.3);
     position: fixed;
     top: 0;
@@ -76,7 +87,7 @@ export default {
     left: 0;
     z-index: 1;
   }
-  &__dialog {
+  .modal-dialog {
     background-color: #ffffff;
     position: relative;
     width: 600px;
@@ -89,27 +100,100 @@ export default {
       width: 90%;
     }
   }
-  &__close {
+  .modal-close {
     width: 30px;
     height: 30px;
+    border: none;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    background: transparent;
+    /* inherit font & color from ancestor */
+    color: inherit;
+    font: inherit;
+    /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
+    line-height: normal;
+    /* Corrects font smoothing for webkit */
+    -webkit-font-smoothing: inherit;
+    -moz-osx-font-smoothing: inherit;
+
+    /* Corrects inability to style clickable `input` types in iOS */
+    -webkit-appearance: none;
   }
-  &__header {
+  .modal-header {
     padding: 20px 20px 10px;
     display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
+    justify-content: flex-end;
   }
-  &__body {
+  .modal-body {
     padding: 10px 20px 10px;
     overflow: auto;
     display: flex;
     flex-direction: column;
     align-items: stretch;
   }
-  &__footer {
+  .modal-footer {
     padding: 10px 20px 20px;
   }
 }
+.product-container {
+  display: flex;
+  flex-direction: column;
+  .image-container {
+    margin: 0 auto;
+    position: relative;
+    background: #e9f4e7;
+    padding-top: calc(1500 / 1050 * 100%);
+  }
+  .info-container,
+  .image-container {
+    width: 100%;
+  }
+  .info-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  .category, .title, .price, .description {
+    border-bottom: 1px solid #164733;
+    padding-bottom: 0.4rem;
+    margin: 1rem;
+  }
+}
+
+img {
+  width: 100%;
+  height: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+@media screen and (min-width: 768px) {
+  .product-container {
+    flex-direction: row;
+    .image-container {
+      margin: auto;
+      position: relative;
+      background: #e9f4e7;
+      padding-top: calc(1500 / 1050 * 50%);
+    }
+    .info-container,
+    .image-container {
+      width: 50%;
+    }
+    .info-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+    .category, .title, .price, .description {
+      border-bottom: 1px solid #164733;
+      padding-bottom: 0.4rem;
+      margin: 1rem;
+    }
+  }
+}
+
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.2s;

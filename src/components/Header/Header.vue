@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header class="header">
     <a class="skip-nav screen-reader-text" href="#maincontent"
       >Skip to main content</a
     >
@@ -17,8 +17,18 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
+.header {
+  /* padding-top: calc(110 / 375 * 100%); */
+  position: relative;
+  height: 120px;
+}
 .logo {
-  max-width: 400px;
+  max-width: 375px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
 }
 .screen-reader-text {
   border: 0;
