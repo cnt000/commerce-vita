@@ -11,24 +11,24 @@
   </transition>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   name: "Badge",
-  data() {
+  data(): { show: boolean; productTitle: string } {
     return {
       show: false,
-      productTitle: '',
+      productTitle: "",
     };
   },
   methods: {
-    closeBadge() {
+    closeBadge(): void {
       this.show = false;
-      document.querySelector("body").classList.remove("overflow-hidden");
+      document.querySelector("body")?.classList.remove("overflow-hidden");
     },
-    openBadge(productTitle) {
+    openBadge(productTitle: string): void {
       this.productTitle = productTitle;
       this.show = true;
-      document.querySelector("body").classList.add("overflow-hidden");
+      document.querySelector("body")?.classList.add("overflow-hidden");
       setTimeout(() => {
         this.closeBadge();
       }, 1500);
@@ -70,7 +70,7 @@ export default {
     }
   }
   &__body {
-    padding: 10px;
+    padding: 0.8rem;
     font-size: 1.4rem;
     overflow: auto;
     display: flex;

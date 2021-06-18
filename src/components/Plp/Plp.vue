@@ -4,15 +4,20 @@
     <div v-if="products === null">Loading ...</div>
     <ul class="products-list">
       <li class="product" v-bind:key="product.id" v-for="product in products">
-        <a @click.prevent="$refs.productDetails.openModal(product)" href="#">
-          <div class="image-container">
-            <img loading="lazy" :src="product.image" alt="" />
-          </div>
-          <span class="title">{{ product.title }}</span>
-          <span class="price">€{{ product.price }}</span>
-          <span class="category">[{{ product.category }}]</span>
+        <a
+          @click.prevent="$refs.productDetails.openModal(product)"
+          href="#"
+          itemscope
+          itemtype="https://schema.org/Product"
+        >
+          <product :product="product" />
         </a>
-        <button class="add-to-cart" @click.prevent="$refs.addToCart.openBadge(product.title)">Add To Cart</button>
+        <button
+          class="add-to-cart"
+          @click.prevent="$refs.addToCart.openBadge(product.title)"
+        >
+          Add To Cart
+        </button>
       </li>
     </ul>
     <modal ref="productDetails"></modal>
@@ -25,22 +30,15 @@ import { defineComponent } from "vue";
 import Modal from "../Modal/Modal.vue";
 import Badge from "../Badge/Badge.vue";
 import products from "../../../data/products.json";
-
-type Product = {
-  id: number;
-  title: string;
-  price: number;
-  description: string;
-  category: string;
-  image: string;
-};
-type Products = Product[];
+import Product from "../Product/Product.vue";
+import { Products } from "../../types/Products";
 
 export default defineComponent({
   name: "Plp",
   components: {
     Modal,
     Badge,
+    Product,
   },
   data() {
     let products: Products = [];
@@ -111,7 +109,6 @@ export default defineComponent({
   .title {
     padding: 1rem 2rem;
     height: 2rem;
-    text-align: left;
     text-overflow: ellipsis;
     overflow: hidden;
   }

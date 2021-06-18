@@ -16,21 +16,27 @@
         </div>
 
         <div class="modal-body">
-          <div class="product-container">
-            <div class="image-container">
-              <img loading="lazy" :src="product.image" alt="" />
+          <div class="product-container"
+          itemscope itemtype="https://schema.org/Product">
+            <div class="first-container">
+              <div class="image-container">
+                <img loading="lazy" :src="product.image" alt="" itemprop="image" />
+              </div>
+              <div class="modal-footer">
+                <button
+                  class="add-to-cart"
+                  @click.prevent="$refs.addToCart.openBadge(product.title)"
+                >
+                  Add To Cart
+                </button>
+              </div>
             </div>
             <div class="info-container">
-              <span class="category">[{{ product.category }}]</span>
-              <span class="title">{{ product.title }}</span>
-              <span class="price">Price: €{{ product.price }}</span>
-              <span class="description">{{ product.description }}</span>
+              <span class="title" itemprop="name">{{ product.title }}</span>
+              <span class="price" itemprop="price">Price: €{{ product.price }}</span>
+              <span class="description" itemprop="description">{{ product.description }}</span>
             </div>
           </div>
-        </div>
-
-        <div class="modal-footer">
-          <button class="add-to-cart" @click.prevent="$refs.addToCart.openBadge(product.title)">Add To Cart</button>
         </div>
       </div>
     </div>
@@ -38,29 +44,37 @@
   <badge ref="addToCart"></badge>
 </template>
 
-<script>
+<script lang="ts">
 import Badge from "../Badge/Badge.vue";
+import { Product as IProduct } from "../../types";
 
 export default {
   name: "Modal",
   components: {
     Badge,
   },
-  data() {
+  data(): { show: boolean; product: IProduct } {
     return {
       show: false,
-      product: {},
+      product: {
+        id: 0,
+        title: "",
+        price: 0,
+        description: "",
+        category: "",
+        image: "",
+      },
     };
   },
   methods: {
-    closeModal() {
+    closeModal(): void {
       this.show = false;
-      document.querySelector("body").classList.remove("overflow-hidden");
+      document.querySelector("body")?.classList.remove("overflow-hidden");
     },
-    openModal(product) {
+    openModal(product: IProduct): void {
       this.product = product;
       this.show = true;
-      document.querySelector("body").classList.add("overflow-hidden");
+      document.querySelector("body")?.classList.add("overflow-hidden");
     },
   },
 };
@@ -91,7 +105,7 @@ export default {
     background-color: #ffffff;
     position: relative;
     width: 600px;
-    margin: 50px auto;
+    margin: 3rem auto;
     display: flex;
     flex-direction: column;
     border-radius: 5px;
@@ -101,8 +115,8 @@ export default {
     }
   }
   .modal-close {
-    width: 30px;
-    height: 30px;
+    width: 2rem;
+    height: 2rem;
     border: none;
     margin: 0;
     padding: 0;
@@ -121,24 +135,29 @@ export default {
     -webkit-appearance: none;
   }
   .modal-header {
-    padding: 20px 20px 10px;
+    padding: 1.5rem 1.5rem 0.8rem;
     display: flex;
     justify-content: flex-end;
   }
   .modal-body {
-    padding: 10px 20px 10px;
+    padding: 0.8rem 1.5rem 0.8rem;
     overflow: auto;
     display: flex;
     flex-direction: column;
     align-items: stretch;
   }
   .modal-footer {
-    padding: 10px 20px 20px;
+    padding: 0.8rem 1.5rem 1.5rem;
   }
 }
 .product-container {
   display: flex;
   flex-direction: column;
+  padding-top: 1rem;
+  border-top: 1px solid #164733;
+  .first-container {
+    width: 100%;
+  }
   .image-container {
     margin: 0 auto;
     position: relative;
@@ -153,11 +172,28 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-  }
-  .category, .title, .price, .description {
+    border-top: 1px solid #164733;
     border-bottom: 1px solid #164733;
-    padding-bottom: 0.4rem;
-    margin: 1rem;
+  }
+  .category,
+  .title,
+  .price,
+  .description {
+    width: 80%;
+    padding: 1rem;
+  }
+  .category,
+  .title,
+  .price {
+    border-bottom: 1px solid #164733;
+  }
+  .title,
+  .price {
+    font-weight: 700;
+  }
+  .description {
+    line-height: 1.6;
+    font-size: 0.9rem;
   }
 }
 
@@ -171,23 +207,30 @@ img {
 @media screen and (min-width: 768px) {
   .product-container {
     flex-direction: row;
+    border-top: none;
+    .first-container {
+      width: 50%;
+    }
     .image-container {
       margin: auto;
       position: relative;
       background: #e9f4e7;
-      padding-top: calc(1500 / 1050 * 50%);
+      padding-top: calc(1500 / 1050 * 90%);
     }
     .info-container,
     .image-container {
-      width: 50%;
+      width: 90%;
     }
     .info-container {
       display: flex;
       flex-direction: column;
       justify-content: space-around;
+      width: 90%;
     }
-    .category, .title, .price, .description {
-      border-bottom: 1px solid #164733;
+    .category,
+    .title,
+    .price,
+    .description {
       padding-bottom: 0.4rem;
       margin: 1rem;
     }
