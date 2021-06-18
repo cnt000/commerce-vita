@@ -8,6 +8,6 @@ describe("Plp.vue", () => {
   });
   it("renders a product", () => {
     const wrapper = shallowMount(Plp);
-    expect(wrapper.find('.product').html()).toBeTruthy();
+    expect(wrapper.find('.product').html()).toContain("<li class=\"product\">");
   });
 });
