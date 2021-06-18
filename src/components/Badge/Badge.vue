@@ -12,7 +12,9 @@
 </template>
 
 <script lang="ts">
-export default {
+import { defineComponent } from "vue";
+
+export default defineComponent({
   name: "Badge",
   data(): { show: boolean; productTitle: string } {
     return {
@@ -34,7 +36,7 @@ export default {
       }, 1500);
     },
   },
-};
+});
 </script>
 
 <style lang="scss" scoped>

@@ -16,11 +16,19 @@
         </div>
 
         <div class="modal-body">
-          <div class="product-container"
-          itemscope itemtype="https://schema.org/Product">
+          <div
+            class="product-container"
+            itemscope
+            itemtype="https://schema.org/Product"
+          >
             <div class="first-container">
               <div class="image-container">
-                <img loading="lazy" :src="product.image" alt="" itemprop="image" />
+                <img
+                  loading="lazy"
+                  :src="product.image"
+                  alt=""
+                  itemprop="image"
+                />
               </div>
               <div class="modal-footer">
                 <button
@@ -33,8 +41,12 @@
             </div>
             <div class="info-container">
               <span class="title" itemprop="name">{{ product.title }}</span>
-              <span class="price" itemprop="price">Price: €{{ product.price }}</span>
-              <span class="description" itemprop="description">{{ product.description }}</span>
+              <span class="price" itemprop="price"
+                >Price: €{{ product.price }}</span
+              >
+              <span class="description" itemprop="description">{{
+                product.description
+              }}</span>
             </div>
           </div>
         </div>
@@ -45,10 +57,11 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from "vue";
 import Badge from "../Badge/Badge.vue";
 import { Product as IProduct } from "../../types";
 
-export default {
+export default defineComponent({
   name: "Modal",
   components: {
     Badge,
@@ -77,7 +90,7 @@ export default {
       document.querySelector("body")?.classList.add("overflow-hidden");
     },
   },
-};
+});
 </script>
 
 <style lang="scss" scoped>
@@ -137,7 +150,6 @@ export default {
     left: 0;
   }
 }
-
 
 @media screen and (min-width: 768px) {
   .product-container {
