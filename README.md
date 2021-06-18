@@ -25,5 +25,12 @@ yarn test:unit
 yarn lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### See project here:
+
+Visit: [Vitavi-Vue app](https://vitavi-vue.surge.sh)
+
+## MergeSort
+
+MergeSort is located under __./mergeSort/__ directory
+
+Refer to: mergeSort/README.md for details
