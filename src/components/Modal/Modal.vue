@@ -179,7 +179,6 @@ export default {
   .title,
   .price,
   .description {
-    width: 80%;
     padding: 1rem;
   }
   .category,
@@ -195,15 +194,16 @@ export default {
     line-height: 1.6;
     font-size: 0.9rem;
   }
+  img {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
 }
 
-img {
-  width: 100%;
-  height: auto;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
+
 @media screen and (min-width: 768px) {
   .product-container {
     flex-direction: row;
@@ -225,14 +225,7 @@ img {
       display: flex;
       flex-direction: column;
       justify-content: space-around;
-      width: 90%;
-    }
-    .category,
-    .title,
-    .price,
-    .description {
-      padding-bottom: 0.4rem;
-      margin: 1rem;
+      width: 60%;
     }
   }
 }

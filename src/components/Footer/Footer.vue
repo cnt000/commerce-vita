@@ -14,6 +14,8 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
+@import "../../scss/_variables";
+
 .footer {
   background-color: #3c7d38;
   height: 2.5rem;
@@ -21,7 +23,7 @@ export default defineComponent({
   justify-content: center;
   align-items: center;
   color: #ffffff;
-  font-size: 1rem;
+  font-size: $base-gap;
   font-weight: 700;
 
   a,
