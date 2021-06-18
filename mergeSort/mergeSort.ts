@@ -1,6 +1,9 @@
+interface ArrayConstructor {
+  from(arrayLike: any, mapFn?, thisArg?): Array<any>;
+}
+
 const mergeSort = (list: number[]) => {
   if (list.length < 2) {
-    // console.log('Input: ', list);
     return list;
   }
   const mid = Math.floor(list.length / 2);
@@ -14,14 +17,12 @@ const mergeSort = (list: number[]) => {
     else if (!r.length) return l.shift();
     else return l[0] > r[0] ? r.shift() : l.shift();
   });
-  console.log(tempArr);
   return tempArr;
 
 };
 
 const rand = (min: number, max: number) => Math.round(Math.random() * (max - min) + min);
 const input: number[] = Array.from({ length: 20 }, () => rand(10, 100));
-const oneTen = [10, 5, 3, 8, 2, 6, 4, 7, 9, 1]
-// console.log('Input: ', input);
-const result = mergeSort(oneTen);
+console.log('input:', input);
+const result = mergeSort(input);
 console.log(result);
