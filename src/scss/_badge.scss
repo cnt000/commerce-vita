@@ -1,0 +1,48 @@
+.badge {
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 9;
+  .badge-backdrop {
+    background-color: rgba(196, 196, 196, 0.1);
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+  }
+  .badge-dialog {
+    background-color: #bff0bf;
+    position: relative;
+    width: 375px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0 0 5px 5px;
+    z-index: 2;
+    @media screen and (max-width: 992px) {
+      width: 90%;
+    }
+  }
+  .badge-body {
+    padding: 0.8rem;
+    font-size: 1.4rem;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}

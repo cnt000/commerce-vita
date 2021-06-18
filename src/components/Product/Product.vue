@@ -20,12 +20,13 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
+@import "../../scss/_variables";
 @import "../../scss/_add-to-cart";
 
 .product {
   width: 50%;
   font-size: 0.9rem;
-  margin-bottom: 2rem;
+  margin-bottom: $double-gap;
 
   a,
   a:link,
@@ -56,8 +57,8 @@ export default defineComponent({
     left: 0;
   }
   .title {
-    padding: 1rem 2rem;
-    height: 2rem;
+    padding: $base-gap $double-gap;
+    height: $double-gap;
     text-align: left;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -65,11 +66,11 @@ export default defineComponent({
   .price {
     color: #0c5017;
     text-align: center;
-    margin: 0.5rem 0;
+    margin: $half-gap 0;
     font-weight: 700;
   }
   .category {
-    margin: 0 auto 1rem auto;
+    margin: 0 auto $base-gap auto;
   }
   .description {
     display: none;

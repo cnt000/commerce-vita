@@ -81,80 +81,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../../scss/_variables";
 @import "../../scss/_add-to-cart";
+@import "../../scss/_modal";
 
-.modal {
-  overflow-x: hidden;
-  overflow-y: auto;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 9;
-  .modal-backdrop {
-    background-color: rgba(0, 0, 0, 0.3);
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 1;
-  }
-  .modal-dialog {
-    background-color: #ffffff;
-    position: relative;
-    width: 600px;
-    margin: 3rem auto;
-    display: flex;
-    flex-direction: column;
-    border-radius: 5px;
-    z-index: 2;
-    @media screen and (max-width: 992px) {
-      width: 90%;
-    }
-  }
-  .modal-close {
-    width: 2rem;
-    height: 2rem;
-    border: none;
-    margin: 0;
-    padding: 0;
-    overflow: visible;
-    background: transparent;
-    /* inherit font & color from ancestor */
-    color: inherit;
-    font: inherit;
-    /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
-    line-height: normal;
-    /* Corrects font smoothing for webkit */
-    -webkit-font-smoothing: inherit;
-    -moz-osx-font-smoothing: inherit;
-
-    /* Corrects inability to style clickable `input` types in iOS */
-    -webkit-appearance: none;
-  }
-  .modal-header {
-    padding: 1.5rem 1.5rem 0.8rem;
-    display: flex;
-    justify-content: flex-end;
-  }
-  .modal-body {
-    padding: 0.8rem 1.5rem 0.8rem;
-    overflow: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .modal-footer {
-    padding: 0.8rem 1.5rem 1.5rem;
-  }
-}
 .product-container {
   display: flex;
   flex-direction: column;
-  padding-top: 1rem;
-  border-top: 1px solid #164733;
+  padding-top: $base-gap;
+  border-top: $base-border;
   .first-container {
     width: 100%;
   }
@@ -172,19 +107,19 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    border-top: 1px solid #164733;
-    border-bottom: 1px solid #164733;
+    border-top: $base-border;
+    border-bottom: $base-border;
   }
   .category,
   .title,
   .price,
   .description {
-    padding: 1rem;
+    padding: $base-gap;
   }
   .category,
   .title,
   .price {
-    border-bottom: 1px solid #164733;
+    border-bottom: $base-border;
   }
   .title,
   .price {
@@ -225,7 +160,7 @@ export default {
       display: flex;
       flex-direction: column;
       justify-content: space-around;
-      width: 60%;
+      width: 50%;
     }
   }
 }

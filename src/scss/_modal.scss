@@ -1,0 +1,67 @@
+.modal {
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 9;
+  .modal-backdrop {
+    background-color: rgba(0, 0, 0, 0.3);
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+  }
+  .modal-dialog {
+    background-color: #ffffff;
+    position: relative;
+    width: 600px;
+    margin: 3rem auto;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    z-index: 2;
+    @media screen and (max-width: 992px) {
+      width: 90%;
+    }
+  }
+  .modal-close {
+    width: $double-gap;
+    height: $double-gap;
+    border: none;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    background: transparent;
+    /* inherit font & color from ancestor */
+    color: inherit;
+    font: inherit;
+    /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
+    line-height: normal;
+    /* Corrects font smoothing for webkit */
+    -webkit-font-smoothing: inherit;
+    -moz-osx-font-smoothing: inherit;
+
+    /* Corrects inability to style clickable `input` types in iOS */
+    -webkit-appearance: none;
+  }
+  .modal-header {
+    padding: 1.5rem 1.5rem 0.8rem;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .modal-body {
+    padding: 0.8rem 1.5rem 0.8rem;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .modal-footer {
+    padding: 0.8rem 1.5rem 1.5rem;
+  }
+}
